@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 3226799898970177227}
   - component: {fileID: 7603449785836020131}
   - component: {fileID: 6740361327691642416}
+  - component: {fileID: 6609338489899134851}
   m_Layer: 11
   m_Name: Heinrich
   m_TagString: Player
@@ -136,6 +137,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -211,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 164a656ec450fa947a7ebd686227ee5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 2.5
+  runSpeed: 1.5
   canContinueCombo: 0
   jumpSpeed: 5.5
 --- !u!114 &3226799898970177224
@@ -288,6 +290,26 @@ MonoBehaviour:
   - 3
   blastDamage: 25
   blastPushBackPower: 1
+--- !u!114 &6609338489899134851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3226799898970177219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51347749d6262641a31a4696e5afd04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  run: 0
+  blast: 0
+  punch: 0
+  jump: 0
+  crouch: 0
+  getDamage: 0
+  guard: 0
+  charge: 0
 --- !u!1 &5097803260660823292
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +321,7 @@ GameObject:
   - component: {fileID: 9126608149592909830}
   - component: {fileID: 7413555436873762448}
   - component: {fileID: 2188632115211531525}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

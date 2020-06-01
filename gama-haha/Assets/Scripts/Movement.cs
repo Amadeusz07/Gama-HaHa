@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     private bool isGuarding = false;
     private bool isGrounded = false;
 
+    private CharacterControl _characterControl;
     private Rigidbody2D _rigidBody;
     private Animator _animator;
     private CapsuleCollider2D _capsuleCollider2D;
@@ -25,13 +26,14 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+        _characterControl = GetComponent<CharacterControl>();
         _rigidBody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _energy = GetComponent<Energy>();
         _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         _damage = GetComponent<Damage>();
         _attack = GetComponentInChildren<Attack>();
-;    }
+    }
 
     // Update is called once per frame
     void Update()
@@ -65,7 +67,7 @@ public class Movement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (_characterControl.jump)
         {
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
             _rigidBody.velocity += jumpVelocityToAdd;
@@ -75,19 +77,19 @@ public class Movement : MonoBehaviour
 
     private void Guard()
     {
-        isGuarding = Input.GetKey(KeyCode.G);
+        isGuarding = _characterControl.guard;
         _animator.SetBool("isGuarding", isGuarding);
     }
 
     private void Charging()
     {
-        _energy.charging = Input.GetKey(KeyCode.R);
+        _energy.charging = _characterControl.charge;
         _animator.SetBool("isCharging", _energy.charging);
     }
 
     private void Blast()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (_characterControl.blast)
         {
             _animator.SetTrigger("blast");
         }
@@ -95,13 +97,13 @@ public class Movement : MonoBehaviour
 
     private void Crouch()
     {
-        isCrouching = Input.GetKey(KeyCode.S);
+        isCrouching = _characterControl.crouch;
         _animator.SetBool("isCrouching", isCrouching);
     }
 
     private void Punch()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (_characterControl.punch)
         {
             if (canContinueCombo)
             {
@@ -120,8 +122,9 @@ public class Movement : MonoBehaviour
 
     private void Run()
     {
-        float controlThrow = Input.GetAxis("Horizontal");
+        float controlThrow = _characterControl.run;
         Vector2 playerVelocity = new Vector2(controlThrow * runSpeed, _rigidBody.velocity.y);
+        _rigidBody.AddForce(playerVelocity);
         _rigidBody.velocity = playerVelocity;
     }
 

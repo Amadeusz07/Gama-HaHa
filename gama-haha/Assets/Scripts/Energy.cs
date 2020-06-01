@@ -61,6 +61,7 @@ public class Energy : MonoBehaviour
     {
         return currentEnergy >= energyToSpend;
     }
+
     private void ShootBlast()
     {
         if (IsEnoughEnergy(blastEnergyCost))

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FightManager : MonoBehaviour
 {
-    private const string AIPlayerTag = "AIPlayer";
+    private const string AI_PLAYER_TAG = "AIPlayer";
 
     void Start()
     {
-        var aiPlayer = GameObject.FindGameObjectWithTag(AIPlayerTag);
-        aiPlayer.GetComponent<Movement>().enabled = false;
+        //var aiPlayer = GameObject.FindGameObjectWithTag(AI_PLAYER_TAG);
+        //aiPlayer.GetComponent<Movement>().enabled = false;
     }
 }
